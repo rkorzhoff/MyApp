@@ -1,9 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  const [title, setTitle] = useState('THIS IS HELLO-WORLD APP');
+  const [title, setTitle] = useState('This is hello world App');
+
+  useEffect(() => {
+    const data = localStorage.getItem('currentTitle');
+    if (data) {
+      setTitle(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('currentTitle', JSON.stringify(title));
+  });
+
   return (
     <View style={styles.container}>
       <Text style={styles.mainHeader} onPress={() => setTitle('some text here 1')}>
