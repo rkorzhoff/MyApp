@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import 'localstorage-polyfill';
 
 export default function App() {
   const [title, setTitle] = useState('This is hello world App');
@@ -18,9 +19,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.mainHeader} onPress={() => setTitle('some text here 1')}>
-        {title}
-      </Text>
+      <Text style={styles.mainHeader}>{title}</Text>
       <View style={styles.elementsContainer}>
         <Text style={styles.element} onPress={() => setTitle('some text here 1')}>
           some text here 1
@@ -83,8 +82,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     textAlign: 'center',
-    '&:hover': {
-      background: '#000',
-    },
   },
 });
